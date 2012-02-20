@@ -8,12 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+
 /*
  * Klasa odpowiadająca za główny wygląd aplikacji.
  */
-
 public class MainApi implements ActionListener {
 
     private JFrame mainWindow;
@@ -27,16 +25,13 @@ public class MainApi implements ActionListener {
     private String a, b;
     private Best best;
     private int index = 0;
-    private List<Integer> wyniki;
+    private int wyniki[];
 
     public MainApi() {
         mainWindow = new JFrame("Piekności z całego świata");
         best = new Best();
         ilosc = 600;
-       // wyniki = new int[3];
-        wyniki = new ArrayList<Integer>();
-        
-        
+        wyniki = new int[3];
         best.setIntegers(0, 0, 0);
 
     }
@@ -64,7 +59,6 @@ public class MainApi implements ActionListener {
         top = new JLabel("Wybierz która lepsza !!! Aplikacja szuka zdjęć w internecie i sporządza ranking. Miłej zabawy!");
 
         statystyka = new JButton("Statystyka");
-
 
         leftPicture = new JLabel();
         leftPicture.setMinimumSize(new Dimension(330, 450));
@@ -108,12 +102,6 @@ public class MainApi implements ActionListener {
         center.setForeground(new Color(255, 255, 255));
         center.setOpaque(true);
 
-
-
-
-
-
-
         lewa = new JButton("Lewa");
         lewa.addActionListener(new ActionListener() {
 
@@ -145,9 +133,6 @@ public class MainApi implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 best.showBest();
 
-
-
-
             }
         });
 
@@ -164,9 +149,6 @@ public class MainApi implements ActionListener {
         }
         a = Integer.toString(i);
         b = Integer.toString(k);
-
-
-
     }
 
     /*
@@ -192,7 +174,7 @@ public class MainApi implements ActionListener {
         } catch (MalformedURLException ex) {
             Logger.getLogger(MainApi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        best.setIntegers(wyniki.get(0), wyniki.get(1), wyniki.get(2));
+        best.setIntegers(wyniki[0], wyniki[1], wyniki[2]);
     }
 
     /*
@@ -208,7 +190,7 @@ public class MainApi implements ActionListener {
     /*
      * Wyświetlenie zawartosci i ustawienia okna.
      */
-    void content(int x,int y, boolean visible) {
+    void content(int x, int y, boolean visible) {
 
         mainWindow.getContentPane().add(leftPicture, BorderLayout.WEST);
         mainWindow.getContentPane().add(rightPicture, BorderLayout.EAST);
@@ -226,18 +208,11 @@ public class MainApi implements ActionListener {
      * Zapis kolejnych wyników.
      */
     void score(int i) {
-        if(index==3){
-            index=0;
-            wyniki.clear();
-        }
-        
-        wyniki.add(i);
+        wyniki[index] = i;
         index++;
-        
-        
-
-        
-        
+        if (index == 3) {
+            index = 0;
+        }
 
     }
 
