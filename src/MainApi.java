@@ -26,6 +26,7 @@ public class MainApi implements ActionListener {
     private Best best;
     private int index = 0;
     private int wyniki[];
+    private GeneralRank rank;
 
     public MainApi() {
         mainWindow = new JFrame("Piekności z całego świata");
@@ -33,6 +34,7 @@ public class MainApi implements ActionListener {
         ilosc = 600;
         wyniki = new int[3];
         best.setIntegers(0, 0, 0);
+        rank=new GeneralRank();
 
     }
 
@@ -109,7 +111,9 @@ public class MainApi implements ActionListener {
             public void actionPerformed(ActionEvent e) {
 
                 score(i);
+                rank.addElements(i);
                 change();
+                
 
             }
         });
@@ -120,7 +124,9 @@ public class MainApi implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 //System.out.println(k);
                 score(k);
+                rank.addElements(k);
                 change();
+                
             }
         });
         buttonPanel.add(lewa);
@@ -139,7 +145,7 @@ public class MainApi implements ActionListener {
     }
 
     /*
-     * Sprawdzanie niepowtarzalności liczb w losowaniu.
+     * Wywołanie losowania oraz sprawdzanie niepowtarzalności liczb w losowaniu.
      */
     void checkRepeatability() {
         i = randomization(ilosc);

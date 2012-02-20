@@ -9,7 +9,6 @@ import javax.swing.*;
 
 /**
  *
- * @author afro
  */
 public class Best {
 
@@ -78,5 +77,5 @@ public class Best {
         }
     
     }
-
+    
 }
