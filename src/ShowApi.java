@@ -9,9 +9,9 @@ public class ShowApi {
      */
     public static void main(String[] args) throws MalformedURLException {
         MainApi api = new MainApi();
-        api.imagePaths();
-        api.setSrodek();
-        api.Content();
+        api.imageStartPaths();
+        api.setDisplay();
+        api.content(900, 700, true);
         
 
 
