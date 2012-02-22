@@ -1,7 +1,6 @@
 
 import java.net.MalformedURLException;
 
-
 public class ShowApi {
 
     /**
@@ -12,8 +11,6 @@ public class ShowApi {
         api.imageStartPaths();
         api.setDisplay();
         api.content(900, 700, true);
-        
-
 
     }
 }

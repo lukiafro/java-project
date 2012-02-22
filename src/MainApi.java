@@ -34,7 +34,7 @@ public class MainApi implements ActionListener {
         ilosc = 600;
         wyniki = new int[3];
         best.setIntegers(0, 0, 0);
-        rank=new GeneralRank();
+        rank = new GeneralRank();
 
     }
 
@@ -113,7 +113,7 @@ public class MainApi implements ActionListener {
                 score(i);
                 rank.addElements(i);
                 change();
-                
+
 
             }
         });
@@ -126,7 +126,7 @@ public class MainApi implements ActionListener {
                 score(k);
                 rank.addElements(k);
                 change();
-                
+
             }
         });
         buttonPanel.add(lewa);
@@ -138,6 +138,7 @@ public class MainApi implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 best.showBest();
+
 
             }
         });
@@ -214,6 +215,7 @@ public class MainApi implements ActionListener {
      * Zapis kolejnych wyników.
      */
     void score(int i) {
+
         wyniki[index] = i;
         index++;
         if (index == 3) {
