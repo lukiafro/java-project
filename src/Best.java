@@ -20,7 +20,7 @@ public class Best {
     private Debug d;
 
     public Best() {
-        d = new Debug(true);
+        d = new Debug();
     }
 
     void setIntegers(int i, int j, int k) {
