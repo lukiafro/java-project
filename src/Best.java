@@ -21,6 +21,8 @@ public class Best {
 
     public Best() {
         d = new Debug();
+        frame = new JFrame("Najlepsze 3 wyniki!!!");
+        frame.setVisible(false);
     }
 
     void setIntegers(int i, int j, int k) {
@@ -46,9 +48,7 @@ public class Best {
 
             } else {
 
-
-                frame = new JFrame("Najlepsze 3 wyniki!!!");
-
+                frame.setVisible(true);
                 URL url = new URL("http://mobitapety.pl/download.php?id=240x320/Kobiety/" + a + ".jpg&id2=Mobitapety_pl_240x320_Kobiety_444.jpg");
                 URL url2 = new URL("http://mobitapety.pl/download.php?id=240x320/Kobiety/" + b + ".jpg&id2=Mobitapety_pl_240x320_Kobiety_444.jpg");
                 URL url3 = new URL("http://mobitapety.pl/download.php?id=240x320/Kobiety/" + c + ".jpg&id2=Mobitapety_pl_240x320_Kobiety_444.jpg");
