@@ -18,7 +18,7 @@ public class MainApi implements ActionListener {
     private JLabel leftPicture;
     private JLabel rightPicture, top, center;
     private JPanel buttonPanel;
-    private JButton lewa, prawa, statystyka;
+    private JButton lewa, prawa, statystyka, najlepsza;
     private URL path1, path2;
     private int ilosc, i, k;
     private Random rand;
@@ -35,6 +35,7 @@ public class MainApi implements ActionListener {
         wyniki = new int[3];
         best.setIntegers(0, 0, 0);
         rank = new GeneralRank();
+
 
     }
 
@@ -60,7 +61,7 @@ public class MainApi implements ActionListener {
 
         top = new JLabel("Wybierz która lepsza !!! Aplikacja szuka zdjęć w internecie i sporządza ranking. Miłej zabawy!");
 
-        statystyka = new JButton("Statystyka");
+        statystyka = new JButton("3 ostatnie wybory!");
 
         leftPicture = new JLabel();
         leftPicture.setMinimumSize(new Dimension(330, 450));
@@ -129,9 +130,22 @@ public class MainApi implements ActionListener {
 
             }
         });
+        najlepsza = new JButton("Najczęściej wybierana!");
+        najlepsza.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    showTheBest();
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(MainApi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         buttonPanel.add(lewa);
         buttonPanel.add(prawa);
         buttonPanel.add(statystyka);
+        buttonPanel.add(najlepsza);
 
         statystyka.addActionListener(new ActionListener() {
 
@@ -222,6 +236,32 @@ public class MainApi implements ActionListener {
             index = 0;
         }
 
+    }
+
+    void showTheBest() throws MalformedURLException {
+        JFrame frame3 = new JFrame("Najlepsza dziewczyna!!!");
+
+        int picture = rank.getFirst();
+        if (picture != 0) {
+            String first = Integer.toString(picture);
+
+            URL url = new URL("http://mobitapety.pl/download.php?id=240x320/Kobiety/" + first + ".jpg&id2=Mobitapety_pl_240x320_Kobiety_444.jpg");
+
+            ImageIcon firstIcon = new ImageIcon(url);
+
+            JLabel firstLabel = new JLabel();
+            firstLabel.setIcon(firstIcon);
+            firstLabel.setBackground(new Color(0, 0, 0));
+            firstLabel.setOpaque(true);
+
+            frame3.getContentPane().add(firstLabel);
+
+
+            frame3.setSize(300, 420);
+            frame3.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(frame3, "Nikt nie zostal wybrany ponownie.");
+        }
     }
 
     @Override
