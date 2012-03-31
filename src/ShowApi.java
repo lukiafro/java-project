@@ -10,7 +10,7 @@ public class ShowApi {
         MainApi api = new MainApi();
         api.imageStartPaths();
         api.setDisplay();
-        api.content(900, 700, true);
+        api.content(true);
 
     }
 }

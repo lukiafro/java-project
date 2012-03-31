@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Random;
 import java.util.logging.Level;
@@ -142,10 +143,21 @@ public class MainApi implements ActionListener {
                 }
             }
         });
+
+        JButton load = new JButton("Dodaj zdjęcie !");
+        load.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadAction();
+            }
+        });
+
         buttonPanel.add(lewa);
         buttonPanel.add(prawa);
         buttonPanel.add(statystyka);
         buttonPanel.add(najlepsza);
+        buttonPanel.add(load);
 
         statystyka.addActionListener(new ActionListener() {
 
@@ -211,7 +223,9 @@ public class MainApi implements ActionListener {
     /*
      * Wyświetlenie zawartosci i ustawienia okna.
      */
-    void content(int x, int y, boolean visible) {
+    void content(boolean visible) {
+
+        int x, y;
 
         mainWindow.getContentPane().add(leftPicture, BorderLayout.WEST);
         mainWindow.getContentPane().add(rightPicture, BorderLayout.EAST);
@@ -219,6 +233,10 @@ public class MainApi implements ActionListener {
         mainWindow.getContentPane().add(top, BorderLayout.NORTH);
         mainWindow.getContentPane().add(center, BorderLayout.CENTER);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        x = (int) screenSize.getWidth();
+        y = (int) screenSize.getHeight();
 
         mainWindow.setEnabled(true);
         mainWindow.setSize(x, y);
@@ -235,7 +253,18 @@ public class MainApi implements ActionListener {
         if (index == 3) {
             index = 0;
         }
+    }
 
+    void loadAction() {
+
+        JFileChooser choose = new JFileChooser();
+
+        int ret = choose.showDialog(null, "Znajdź zdjęcie");
+
+        if (ret == JFileChooser.APPROVE_OPTION) {
+            File file = choose.getSelectedFile();
+            System.out.println(file);
+        }
     }
 
     void showTheBest() throws MalformedURLException {
